@@ -3,9 +3,8 @@ import AVFoundation
 
 class ViewController: UIViewController {
 
-    // デバイスからの入力と出力を管理するオブジェクトの作成
+    // デバイスからの入力と出力を管理するオブジェクトの作成 これ最初必要
     let captureSession = AVCaptureSession()
-    // カメラデバイスそのものを管理するオブジェクトの作成
     // メインカメラの管理オブジェクトの作成
     var mainCamera: AVCaptureDevice?
     // インカメの管理オブジェクトの作成
@@ -84,7 +83,7 @@ extension ViewController{
         currentDevice = mainCamera
     }
 
-    // 入出力データの設定
+//MARK: 入出力設定
     func setupInputOutput() {
         do {
             // 指定したデバイスを使用するために入力を初期化
@@ -101,7 +100,7 @@ extension ViewController{
         }
     }
 
-    // カメラのプレビューを表示するレイヤの設定
+//MARK: レイヤー画面
     func setupPreviewLayer() {
         // 指定したAVCaptureSessionでプレビューレイヤを初期化
         self.cameraPreviewLayer = AVCaptureVideoPreviewLayer(session: captureSession)
@@ -113,7 +112,7 @@ extension ViewController{
         self.cameraPreviewLayer?.frame = view.frame
         self.view.layer.insertSublayer(self.cameraPreviewLayer!, at: 0)
     }
-    // ボタンのスタイルを設定
+ //MARK: ボタンスタイル設定
     func styleCaptureButton() {
         cameraButton.layer.borderColor = UIColor.white.cgColor
         cameraButton.layer.borderWidth = 5
