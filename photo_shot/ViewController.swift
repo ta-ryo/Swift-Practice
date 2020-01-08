@@ -4,7 +4,7 @@ import AVFoundation
 class ViewController: UIViewController {
 
     // デバイスからの入力と出力を管理するオブジェクトの作成
-    var captureSession = AVCaptureSession()
+    let captureSession = AVCaptureSession()
     // カメラデバイスそのものを管理するオブジェクトの作成
     // メインカメラの管理オブジェクトの作成
     var mainCamera: AVCaptureDevice?
@@ -28,15 +28,17 @@ class ViewController: UIViewController {
         captureSession.startRunning()
         styleCaptureButton()
     }
+    //　押されたボタンのタグを取得してし撮影とLibraryへの繊維を識別させたい
     enum actionTag: Int {
         case action1 = 0
         case action2 = 1
     }
-
+    
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
     }
+    
+    // shotが押された時の処理
     @IBAction func cameraButton_TouchUPInside(_ sender: Any) {
         let settings = AVCapturePhotoSettings()
             // 撮影された画像をdelegateメソッドで処理
@@ -45,7 +47,6 @@ class ViewController: UIViewController {
 
 }
 
-//MARK: AVCapturePhotoCaptureDelegateデリゲートメソッド
 extension ViewController: AVCapturePhotoCaptureDelegate{
     // 撮影した画像データが生成されたときに呼び出されるデリゲートメソッド
     func photoOutput(_ output: AVCapturePhotoOutput, didFinishProcessingPhoto photo: AVCapturePhoto, error: Error?) {
@@ -58,7 +59,7 @@ extension ViewController: AVCapturePhotoCaptureDelegate{
     }
 }
 
-//MARK: カメラ設定メソッド
+//MARK: カメラ設定
 extension ViewController{
     // カメラの画質の設定
     func setupCaptureSession() {
